@@ -1,8 +1,18 @@
 vim.cmd('autocmd!') -- Очистка всех автокоманд перед добавлением новых
 
+-- Функция для определения операционной системы
+local has = function(x)
+    return vim.fn.has(x) == 1
+end
+
+local is_mac = has "macunix"
+local in_win = has "win32"
+-- __________________________________________
+
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
+
 
 vim.wo.number = true -- Нумеровка строк
 vim.opt.relativenumber = true -- Устанавливает относительную нумеровку строк
@@ -16,7 +26,12 @@ vim.opt.cmdheight = 1 -- Установка высоты командной ст
 vim.opt.laststatus = 2 -- Всегда отображать строку состояния, "1" - отображать строку состояния, только когда в наличии более одного окна
 vim.opt.expandtab = true -- Использование пробелов вместо символа табуляции
 vim.opt.scrolloff = 12 -- Количество строк видимые сверху и снизу при прокрутке текста
-vim.opt.shell = "/bin/zsh" -- Установка командной оболочки для выполнения команд
+if is_mac then
+    vim.opt.shell = "/bin/zsh" -- Установка командной оболочки для выполнения команд
+end
+if is_win then
+    vim.opt.shell = "C:\\WINDOWS\\system32\\cmd.exe" -- Установка командной оболочки для выполнения команд
+end
 vim.opt.inccommand = 'split' -- Отображение результата изменения текста в реальном времени при вводе
 vim.opt.ignorecase = true -- Игнорирование регистра букв при поиске текста
 vim.opt.smarttab = true -- Умный подход при автоматическом добавлении отступов с использованием символов табуляции
