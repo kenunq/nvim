@@ -11,7 +11,6 @@ end
 
 local is_mac = has("macunix")
 local is_win = has("win32")
-local is_linux = has("unix")
 -- __________________________________________
 
 vim.scriptencoding = "utf-8"
@@ -32,9 +31,6 @@ vim.opt.expandtab = true -- Использование пробелов вмес
 vim.opt.scrolloff = 12 -- Количество строк видимые сверху и снизу при прокрутке текста
 if is_mac then
   vim.opt.shell = "/bin/zsh" -- Установка командной оболочки для выполнения команд
-end
-if is_linux then
-  vim.opt.shell = "/bin/bash"
 end
 if is_win then
   vim.opt.shell = "C:\\WINDOWS\\system32\\cmd.exe" -- Установка командной оболочки для выполнения команд
@@ -66,7 +62,7 @@ vim.opt.pumblend = 5 -- Устанавливает степень прозрач
 vim.opt.background = "dark" -- Устанавливает цветовую схему 'dark'/'light'
 
 vim.opt.clipboard = "unnamedplus" -- Дает доступ к системному буферу обмену
-if is_mac or is_linux then
+if is_mac then
   vim.opt.clipboard:append({ "unnamedplus" }) -- Дает доступ к системному буферу обмену
 end
 if is_win then
