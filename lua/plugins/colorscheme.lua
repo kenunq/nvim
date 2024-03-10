@@ -1,5 +1,5 @@
 return {
-  "craftzdog/solarized-osaka.nvim",
+  "kenunq/solarized-osaka.nvim",
   lazy = true,
   priority = 1000,
   opts = function()
@@ -8,3 +8,4 @@ return {
     }
   end,
 }
+-- qweqweqwe
