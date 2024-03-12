@@ -52,13 +52,13 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      -- add a keymap to browse plugin files
-      -- stylua: ignore
-      {
-        "<leader>fp",
-        function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
-        desc = "Find Plugin File",
-      },
+            -- add a keymap to browse plugin files
+            -- stylua: ignore
+            {
+                "<leader>fp",
+                function() require("telescope.builtin").find_files({ cwd = require("lazy.core.config").options.root }) end,
+                desc = "Find Plugin File",
+            },
     },
     -- change some options
     opts = {
@@ -103,8 +103,9 @@ return {
       "jose-elias-alvarez/typescript.nvim",
       init = function()
         require("lazyvim.util").on_attach(function(_, buffer)
-          -- stylua: ignore
-          vim.keymap.set( "n", "<leader>co", "TypescriptOrganizeImports", { buffer = buffer, desc = "Organize Imports" })
+                    -- stylua: ignore
+                    vim.keymap.set("n", "<leader>co", "TypescriptOrganizeImports",
+                        { buffer = buffer, desc = "Organize Imports" })
           vim.keymap.set("n", "<leader>cR", "TypescriptRenameFile", { desc = "Rename File", buffer = buffer })
         end)
       end,
@@ -203,6 +204,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "black",
         "stylua",
         "shellcheck",
         "shfmt",
