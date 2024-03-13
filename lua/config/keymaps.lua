@@ -41,3 +41,8 @@ vim.keymap.set("n", "<leader>o", ":Neotree float git_status<CR>") -- откры�
 
 -- Комменты
 vim.keymap.set("n", "<C-/>", "<Plug>(comment_toggle_linewise_current)")
+
+-- сессии
+vim.keymap.set("n", "<C-s>", require("auto-session.session-lens").search_session, {
+  noremap = true,
+})
