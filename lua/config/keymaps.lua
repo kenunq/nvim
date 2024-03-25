@@ -47,7 +47,6 @@ vim.keymap.set("n", "<C-s>", require("auto-session.session-lens").search_session
   noremap = true,
 })
 
-----------------------------------------
 --------------------------------------------
 require("lspconfig").pylsp.setup({
   on_attach = on_attach,
