@@ -46,3 +46,23 @@ vim.keymap.set("n", "<C-/>", "<Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("n", "<C-s>", require("auto-session.session-lens").search_session, {
   noremap = true,
 })
+
+----------------------------------------
+--------------------------------------------
+require("lspconfig").pylsp.setup({
+  on_attach = on_attach,
+  flags = {
+    -- This will be the default in neovim 0.7+
+    debounce_text_changes = 150,
+  },
+  settings = {
+    -- configure plugins in pylsp
+    pylsp = {
+      plugins = {
+        pyflakes = { enabled = false },
+        pylint = { enabled = false },
+        pycodestyle = { enabled = false },
+      },
+    },
+  },
+})

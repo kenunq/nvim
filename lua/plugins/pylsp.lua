@@ -9,7 +9,7 @@ return {
       on_attach = on_attach,
       pylsp_plugins = {
         autopep8 = {
-          enabled = true,
+          enabled = false,
         },
         pyls_mypy = {
           enabled = true,
@@ -20,6 +20,9 @@ return {
         flake8 = {
           enabled = false,
           executable = ".venv/bin/flake8",
+        },
+        pycodestyle = { -- Отключаем pycodestyle
+          enabled = false,
         },
       },
     })
