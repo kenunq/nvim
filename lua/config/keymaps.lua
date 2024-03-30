@@ -29,15 +29,15 @@ keymap.set("", "<C-w><down>", "<C-w>-") -- Изменение размера а�
 -- keymap.set("v", "<C-c>", "<Cmd>lua vim.api.nvim_command('normal! \"*y')<CR>")
 
 -- буфер лайн
-vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>") -- Tab перемещает на следующую вкладку
-vim.keymap.set("n", "<s-Tab>", ":BufferLineCyclePrev<CR>") -- S-Tab перемещает на предыдущую вк ладку
-vim.keymap.set("n", "<leader>x", ":BufferLinePickClose<CR>") -- Отображает буквы на лайне по которым можно закрыть вкладку
-vim.keymap.set("n", "<leader>X", ":BufferLineCloseRight<CR>") -- закрывает все вкладки справа от текущего
+vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true }) -- Tab перемещает на следующую вкладку
+vim.keymap.set("n", "<s-Tab>", ":BufferLineCyclePrev<CR>", { silent = true }) -- S-Tab перемещает на предыдущую вк ладку
+vim.keymap.set("n", "<leader>x", ":BufferLinePickClose<CR>", { silent = true }) -- Отображает буквы на лайне по которым можно закрыть вкладку
+vim.keymap.set("n", "<leader>X", ":BufferLineCloseRight<CR>, { silent = true }") -- закрывает все вкладки справа от текущего
 
 -- Неотрии
-vim.keymap.set("n", "<leader>E", ":Neotree left reveal<CR>") -- Открывает неотри слева экрана
-vim.keymap.set("n", "<leader>e", ":Neotree float reveal<CR>") -- открывает неотри по центру экрана
-vim.keymap.set("n", "<leader>o", ":Neotree float git_status<CR>") -- открывает неотри-гитстатус
+vim.keymap.set("n", "<leader>E", ":Neotree left reveal<CR>", { silent = true }) -- Открывает неотри слева экрана
+vim.keymap.set("n", "<leader>e", ":Neotree float reveal<CR>", { silent = true }) -- открывает неотри по центру экрана
+vim.keymap.set("n", "<leader>o", ":Neotree float git_status<CR>", { silent = true }) -- открывает неотри-гитстатус
 
 -- Комменты
 vim.keymap.set("n", "<C-/>", "<Plug>(comment_toggle_linewise_current)")
@@ -46,6 +46,16 @@ vim.keymap.set("n", "<C-/>", "<Plug>(comment_toggle_linewise_current)")
 vim.keymap.set("n", "<C-s>", require("auto-session.session-lens").search_session, {
   noremap = true,
 })
+
+-- авто сохранение
+vim.api.nvim_set_keymap("n", "<leader>cs", ":ASToggle<CR>", { silent = true, desc = "Auto-save(on-off)" })
+
+-- Список проблем в проекте (открытых файлов в буфере)
+vim.api.nvim_set_keymap("n", "<leader>ct", ":Trouble<CR>", { silent = true })
+
+-- git signs
+vim.api.nvim_set_keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { silent = true, desc = "Git preview change" })
+vim.api.nvim_set_keymap("n", "<leader>gi", ":Gitsigns blame_line<CR>", { silent = true, desc = "Git change info" })
 
 --------------------------------------------
 require("lspconfig").pylsp.setup({
@@ -60,7 +70,22 @@ require("lspconfig").pylsp.setup({
       plugins = {
         pyflakes = { enabled = false },
         pylint = { enabled = false },
-        pycodestyle = { enabled = false },
+        pycodestyle = { enabled = false }, -- отключение pydocstyle lint
+      },
+    },
+  },
+})
+
+require("lspconfig").pyright.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+  filetypes = {
+    "python",
+  },
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "off", --Disable Pyright diagnostics
       },
     },
   },
