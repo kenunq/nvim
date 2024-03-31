@@ -32,7 +32,7 @@ keymap.set("", "<C-w><down>", "<C-w>-") -- Изменение размера а�
 vim.keymap.set("n", "<Tab>", ":BufferLineCycleNext<CR>", { silent = true }) -- Tab перемещает на следующую вкладку
 vim.keymap.set("n", "<s-Tab>", ":BufferLineCyclePrev<CR>", { silent = true }) -- S-Tab перемещает на предыдущую вк ладку
 vim.keymap.set("n", "<leader>x", ":BufferLinePickClose<CR>", { silent = true }) -- Отображает буквы на лайне по которым можно закрыть вкладку
-vim.keymap.set("n", "<leader>X", ":BufferLineCloseRight<CR>, { silent = true }") -- закрывает все вкладки справа от текущего
+vim.keymap.set("n", "<leader>X", ":BufferLineCloseRight<CR>", { silent = true }) -- закрывает все вкладки справа от текущего
 
 -- Неотрии
 vim.keymap.set("n", "<leader>E", ":Neotree left reveal<CR>", { silent = true }) -- Открывает неотри слева экрана
