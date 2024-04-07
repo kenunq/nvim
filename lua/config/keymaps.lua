@@ -2,6 +2,8 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local keymap = vim.keymap
+
+local wk = require("which-key")
 -- vim.g.mapleader = " "
 keymap.set("n", "+", "<C-a>") -- Увеличение числа на +1
 keymap.set("n", "-", "<C-x>") -- Уменьшение числа на -1
@@ -57,6 +59,47 @@ vim.api.nvim_set_keymap("n", "<leader>ct", ":Trouble<CR>", { silent = true })
 vim.api.nvim_set_keymap("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { silent = true, desc = "Git preview change" })
 vim.api.nvim_set_keymap("n", "<leader>gi", ":Gitsigns blame_line<CR>", { silent = true, desc = "Git change info" })
 
+-- neotest
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>tr",
+  ":lua require('neotest').run.run()<CR>",
+  { silent = true, desc = "Run current test" }
+) -- Запускает тест на котором стоит курсор
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>tR",
+  ":lua require('neotest').run.run(vim.fn.expand('%'))<CR>",
+  { silent = true, desc = "Run all test in file" }
+) -- Запускаем все тесты в файле
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>ts",
+  ":lua require('neotest').run.stop()<CR>",
+  { silent = true, desc = "Stop current test" }
+) -- Остановить тест
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>ti",
+  ":lua require('neotest').summary.toggle()<CR>",
+  { silent = true, desc = "Open summary" }
+) -- Откртыть все тесты в проекте
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>to",
+  ":lua require('neotest').output.open({ enter = true })<CR>",
+  { silent = true, desc = "Test result" }
+) -- Открыть панель вывода теста
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>tO",
+  ":lua require('neotest').output_panel.open()<CR>",
+  { silent = true, desc = "Output panel" }
+) -- Открыть общую панель вывода
+
+wk.register({
+  ["<leader>t"] = { name = "Tests" },
+})
 --------------------------------------------
 require("lspconfig").pylsp.setup({
   on_attach = on_attach,
