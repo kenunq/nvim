@@ -2,6 +2,8 @@ return {
   "hrsh7th/nvim-cmp",
   dependencies = {
     "hrsh7th/cmp-emoji",
+    "L3MON4D3/LuaSnip",
+    "saadparwaiz1/cmp_luasnip",
   },
   --  opts cmp.ConfigSchema
   opts = function(_, opts)
@@ -13,6 +15,16 @@ return {
 
     local luasnip = require("luasnip")
     local cmp = require("cmp")
+
+    opts.sources = { -- удаляет ненужные снипеты
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+      { name = "buffer" },
+      { name = "path" },
+      -- { name = "emoji" },  -- добавляет авто-комплит эмоджи :smile 😀
+    }
+    require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/snippets/" })
+    -- table.insert(opts.sources, { name = "luasnip" }) -- необходимо для работы снипетов
 
     opts.mapping = vim.tbl_extend("force", opts.mapping, {
       ["<Tab>"] = cmp.mapping(function(fallback)

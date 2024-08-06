@@ -8,6 +8,7 @@ return {
       "shfmt",
       "flake8",
       "python-lsp-server",
+      "css-lsp",
     },
   },
 }

@@ -1,6 +1,13 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        -- build = "make",
+        build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
+      },
+    },
     keys = {
       -- add a keymap to browse plugin files
       -- stylua: ignore

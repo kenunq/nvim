@@ -9,6 +9,12 @@ return {
   opts = {
     popup_border_style = "rounded",
 
+    window = {
+      mappings = {
+        ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
+      },
+    },
+
     default_component_configs = {
       container = {
         enable_character_fade = true,

@@ -135,3 +135,10 @@ require("lspconfig").pyright.setup({
     },
   },
 })
+
+vim.api.nvim_set_keymap(
+  "v",
+  "<leader>a",
+  ':lua require("highlight_plugin").wrap_text()<CR>',
+  { noremap = true, silent = true }
+)
